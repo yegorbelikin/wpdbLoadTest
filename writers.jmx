@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="writers">
+      <intProp name="ThreadGroup.num_threads">30</intProp>
+      <intProp name="ThreadGroup.ramp_time">1</intProp>
+      <longProp name="ThreadGroup.duration">500</longProp>
+      <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      <boolProp name="ThreadGroup.scheduler">true</boolProp>
+      <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+      <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+        <intProp name="LoopController.loops">-1</intProp>
+        <boolProp name="LoopController.continue_forever">false</boolProp>
+      </elementProp>
+    </ThreadGroup>
+    <hashTree>
+      <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="v1" enabled="false">
+        <stringProp name="dataSource">wpdb_1</stringProp>
+        <stringProp name="queryType">Callable Statement</stringProp>
+        <stringProp name="query">call dorepeat_v1(10);</stringProp>
+        <stringProp name="queryArguments"></stringProp>
+        <stringProp name="queryArgumentsTypes"></stringProp>
+        <stringProp name="variableNames"></stringProp>
+        <stringProp name="resultVariable">request_2</stringProp>
+        <stringProp name="queryTimeout"></stringProp>
+        <stringProp name="resultSetMaxRows">100</stringProp>
+        <stringProp name="resultSetHandler">Store as String</stringProp>
+      </JDBCSampler>
+      <hashTree/>
+      <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="v2">
+        <stringProp name="dataSource">wpdb_1</stringProp>
+        <stringProp name="queryType">Callable Statement</stringProp>
+        <stringProp name="query">CALL dorepeat_v2(3, &apos;${__RandomString(10,abcdefg)}&apos;);</stringProp>
+        <stringProp name="queryArguments"></stringProp>
+        <stringProp name="queryArgumentsTypes"></stringProp>
+        <stringProp name="variableNames"></stringProp>
+        <stringProp name="resultVariable">request_2</stringProp>
+        <stringProp name="queryTimeout"></stringProp>
+        <stringProp name="resultSetMaxRows">100</stringProp>
+        <stringProp name="resultSetHandler">Store as String</stringProp>
+      </JDBCSampler>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
